@@ -20,7 +20,7 @@ public class DepositService implements IDepositService {
     private IUserRepo userRepo;
 
     @Override
-    public Deposit makeDeposit(Long userId, int amount) {
+    public Deposit makeDeposit(Long userId, int depositAmount) {
         if (userId == null) {
             throw new UserIdNotProvidedException();
         }
@@ -28,11 +28,13 @@ public class DepositService implements IDepositService {
             Optional<User> user = userRepo.findById(userId);
             if (user.isPresent()) {
                 User depositUser = user.get();
-                depositUser.setBalance(depositUser.getBalance() + amount);
-
+                int newBalance = depositUser.getBalance() + depositAmount;
                 Deposit deposit = new Deposit();
                 deposit.setUserId(userId);
-                deposit.setAmount(amount);
+                deposit.setDepositAmount(depositAmount);
+                deposit.setInitialBalance(depositUser.getBalance());
+                deposit.setNewBalance(newBalance);
+                depositUser.setBalance(newBalance);
 
                 userRepo.save(depositUser);
                 return depositRepo.save(deposit);

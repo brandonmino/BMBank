@@ -12,6 +12,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IDepositRepo extends CrudRepository<Deposit, Long> {
     public Optional<Deposit> findByUserId(Long userId);
-    public Optional<Deposit> findAllByUserId(Long userId);
     public Deposit save(Deposit deposit);
 }

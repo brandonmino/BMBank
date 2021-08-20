@@ -25,7 +25,7 @@ public class DepositController {
     //Get the existing account
     @PostMapping("/deposit/{userId}")
     public EntityModel<Deposit> makeDeposit(@PathVariable(required=true) Long userId, @RequestBody Deposit depositDetails) {
-        Deposit newDeposit = depositService.makeDeposit(userId, depositDetails.getAmount());
+        Deposit newDeposit = depositService.makeDeposit(userId, depositDetails.getDepositAmount());
         return EntityModel.of(newDeposit,
                 linkTo(methodOn(DepositController.class).makeDeposit(userId, depositDetails)).withSelfRel()
         );   

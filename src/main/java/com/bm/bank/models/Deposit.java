@@ -13,7 +13,9 @@ public class Deposit {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long transactionId;
     Long userId;
-    int amount;
+    int depositAmount;
+    int initialBalance;
+    int newBalance;
 
     public Deposit() {};
 
@@ -25,8 +27,16 @@ public class Deposit {
         return userId;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getDepositAmount() {
+        return depositAmount;
+    }
+
+    public int getInitialBalance() {
+        return initialBalance;
+    }
+
+    public int getNewBalance() {
+        return newBalance;
     }
 
     public void setTransactionId(Long newId) {
@@ -37,7 +47,15 @@ public class Deposit {
         userId = newId;
     }
 
-    public void setAmount(int newAmount) {
-        amount = newAmount;
+    public void setDepositAmount(int newAmount) {
+        depositAmount = newAmount;
+    }
+
+    public void setInitialBalance(int newBalance) {
+        initialBalance = newBalance;
+    }
+
+    public void setNewBalance(int balance) {
+        newBalance = balance;
     }
 }
