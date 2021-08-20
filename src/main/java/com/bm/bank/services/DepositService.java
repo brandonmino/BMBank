@@ -2,6 +2,7 @@ package com.bm.bank.services;
 
 import java.util.Optional;
 
+import com.bm.bank.exceptions.NegativeDepositException;
 import com.bm.bank.exceptions.UserIdNotProvidedException;
 import com.bm.bank.exceptions.UserNotFoundException;
 import com.bm.bank.models.Deposit;
@@ -25,6 +26,9 @@ public class DepositService implements IDepositService {
     public Deposit makeDeposit(Long userId, int depositAmount) {
         if (userId == null) {
             throw new UserIdNotProvidedException();
+        }
+        else if (depositAmount < 0) {
+            throw new NegativeDepositException();
         }
         else {
             Optional<User> user = userRepo.findById(userId);

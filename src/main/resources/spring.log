@@ -1,0 +1,32 @@
+2021-08-20 15:52:42.810  INFO 380 --- [main] com.bm.bank.BankApplication              : Starting BankApplication using Java 16.0.2 on 88JT0F3 with PID 380 (C:\Users\brandon.mino\Downloads\bank\bank\target\classes started by brandon.mino in C:\Users\brandon.mino\Downloads\bank\bank)
+2021-08-20 15:52:42.812  INFO 380 --- [main] com.bm.bank.BankApplication              : No active profile set, falling back to default profiles: default
+2021-08-20 15:52:43.245  INFO 380 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-08-20 15:52:43.290  INFO 380 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 3 JPA repository interfaces.
+2021-08-20 15:52:43.711  INFO 380 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-08-20 15:52:43.722  INFO 380 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-08-20 15:52:43.723  INFO 380 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.52]
+2021-08-20 15:52:43.817  INFO 380 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-08-20 15:52:43.818  INFO 380 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 969 ms
+2021-08-20 15:52:43.961  INFO 380 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-08-20 15:52:44.003  INFO 380 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.5.6.Final
+2021-08-20 15:52:44.137  INFO 380 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-08-20 15:52:44.219  INFO 380 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-08-20 15:52:44.461  INFO 380 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-08-20 15:52:44.474  INFO 380 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-08-20 15:52:44.887  INFO 380 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-08-20 15:52:44.894  INFO 380 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-08-20 15:52:45.129  WARN 380 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-08-20 15:52:45.463  INFO 380 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-20 15:52:45.471  INFO 380 --- [main] com.bm.bank.BankApplication              : Started BankApplication in 2.948 seconds (JVM running for 3.227)
+2021-08-20 15:52:46.836  INFO 380 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-20 15:52:46.837  INFO 380 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-08-20 15:52:46.838  INFO 380 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2021-08-20 15:52:46.873  INFO 380 --- [http-nio-8080-exec-1] c.bm.bank.controllers.DepositController  : HTTP Status: 400 BAD_REQUEST
+2021-08-20 15:52:46.874  INFO 380 --- [http-nio-8080-exec-1] c.bm.bank.controllers.DepositController  : com.bm.bank.exceptions.NegativeDepositException: Deposit was blocked as you attempted to deposit a negative amount
+2021-08-20 15:53:30.365  INFO 380 --- [http-nio-8080-exec-4] c.bm.bank.controllers.DepositController  : HTTP Status: 405 METHOD_NOT_ALLOWED
+2021-08-20 15:53:30.366  INFO 380 --- [http-nio-8080-exec-4] c.bm.bank.controllers.DepositController  : com.bm.bank.exceptions.UserNotFoundException: Could not find content with Id: 10
+2021-08-20 16:04:20.401  INFO 380 --- [http-nio-8080-exec-7] c.bm.bank.controllers.DepositController  : HTTP Status: 201 CREATED
+2021-08-20 16:04:20.402  INFO 380 --- [http-nio-8080-exec-7] c.bm.bank.controllers.DepositController  : EntityModel { content: Deposit{transactionId=23, userId='16', depositAmount=10', initialBalance=1520', newBalance=1530}, links: [<http://localhost:8080/deposit/16>;rel="self"] }
+2021-08-20 16:04:35.624  INFO 380 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-08-20 16:04:35.626  INFO 380 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-08-20 16:04:35.633  INFO 380 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
