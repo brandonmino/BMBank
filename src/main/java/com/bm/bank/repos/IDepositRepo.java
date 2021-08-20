@@ -4,11 +4,10 @@ import java.util.Optional;
 
 import com.bm.bank.models.Deposit;
 
-//import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-//import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+//Deposit Repo Interface
 @Repository
 public interface IDepositRepo extends CrudRepository<Deposit, Long> {
     public Optional<Deposit> findByUserId(Long userId);

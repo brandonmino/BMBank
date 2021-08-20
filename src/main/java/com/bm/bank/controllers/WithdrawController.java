@@ -2,7 +2,6 @@ package com.bm.bank.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
-//import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,15 +13,13 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import com.bm.bank.models.Withdraw;
 import com.bm.bank.services.WithdrawService;
 
-//import java.util.Map;
-
 //Withdraw controller object
 @RestController
 public class WithdrawController {
     @Autowired
     private WithdrawService withdrawService;
 
-    //Get the existing account
+    //Attempt to withdraw from given account
     @PostMapping("/withdraw/{userId}")
     public EntityModel<Withdraw> makeWithdraw(@PathVariable(required=true) Long userId, @RequestBody Withdraw withdrawDetails) {
         Withdraw newWithdraw = withdrawService.makeWithdraw(userId, withdrawDetails.getWithdrawAmount());

@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+//Withdraw Model
 @Entity
 @Table(name = "WithdrawTransactions")
 public class Withdraw {

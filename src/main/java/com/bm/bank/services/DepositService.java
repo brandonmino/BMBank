@@ -12,6 +12,7 @@ import com.bm.bank.repos.IUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+//Deposit Service
 @Service
 public class DepositService implements IDepositService {
     @Autowired
@@ -19,6 +20,7 @@ public class DepositService implements IDepositService {
     @Autowired
     private IUserRepo userRepo;
 
+    //Method for making a deposit
     @Override
     public Deposit makeDeposit(Long userId, int depositAmount) {
         if (userId == null) {
