@@ -59,4 +59,16 @@ public class Withdraw {
     public void setNewBalance(int balance) {
         newBalance = balance;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Deposit{");
+        sb.append("transactionId=").append(transactionId);
+        sb.append(", userId='").append(userId).append('\'');
+        sb.append(", withdrawAmount=").append(withdrawAmount).append('\'');
+        sb.append(", initialBalance=").append(initialBalance).append('\'');
+        sb.append(", newBalance=").append(newBalance);
+        sb.append('}');
+        return sb.toString();
+    }
 }
