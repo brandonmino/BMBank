@@ -26,7 +26,7 @@ public class UserController {
 
     //Get the existing account
     @GetMapping("/user/{id}")
-    public User getBalance(@PathVariable(required=true) Long id) {
+    public User getId(@PathVariable(required=true) Long id) {
         return userService.findById(id);  
     }
 
@@ -57,17 +57,4 @@ public class UserController {
         userService.delete(user);
         return "User with Id " + id + " was deleted";
     }
-
-    // //Get the balance for a given account
-    // @GetMapping("/balance/{id}")
-    // public int getBalance(@PathVariable(required=true) Long id) {
-    //     if (id == null) {
-    //         throw new UserIdNotProvidedException(id);
-    //     }
-    //     else {
-    //         User item = userService.findById(id);
-    //         return item.getBalance();
-    //     }    
-    // }
-
 }
