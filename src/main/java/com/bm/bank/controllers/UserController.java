@@ -38,12 +38,12 @@ public class UserController {
     //Get the existing account
     @GetMapping("/user/{id}")
     public ResponseEntity<Object> getId(@PathVariable(required=true) Long id) {
-        logger.info("Attempting to retrieve user with the following info: userID: " + id);
+        logger.debug("Attempting to retrieve user with the following info: userID: " + id);
         try {
             User retrievedUser = userService.findById(id);
             ResponseEntity<Object> resultEntity = ResponseEntity.ok().body(retrievedUser);
-            logger.info("HTTP Status: " + HttpStatus.OK.toString());
-            logger.info("Successfully retrieved user with id: " + id + ". Info: " + retrievedUser);
+            logger.debug("HTTP Status: " + HttpStatus.OK.toString());
+            logger.debug("Successfully retrieved user with id: " + id + ". Info: " + retrievedUser);
             return resultEntity;
             //return ResponseEntity.created(uri).body(retrievedUser);
         }
@@ -62,13 +62,13 @@ public class UserController {
     //Create an account with given details
     @PostMapping("/user/create")
     public ResponseEntity<Object> createUser(@RequestBody User user) {
-        logger.info("Attempting to create user with the following info: " + user);
+        logger.debug("Attempting to create user with the following info: " + user);
         try {
             User newUser = userService.createNewUser(user);
             URI uri = linkTo(methodOn(UserController.class).createUser(newUser)).withSelfRel().toUri();
             ResponseEntity<Object> resultEntity = ResponseEntity.created(uri).body(newUser);
-            logger.info("HTTP Status: " + HttpStatus.CREATED.toString());
-            logger.info("Successfully created new user: " + newUser);
+            logger.debug("HTTP Status: " + HttpStatus.CREATED.toString());
+            logger.debug("Successfully created new user: " + newUser);
             return resultEntity;
         }
         catch (UserNotProvidedException ex) {
@@ -81,12 +81,12 @@ public class UserController {
     //Delete the given account
     @DeleteMapping("/user/delete/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable(required=true) Long id) {
-        logger.info("Attempting to delete user with the following id: " + id);
+        logger.debug("Attempting to delete user with the following id: " + id);
         try {
             userService.delete(id);
             ResponseEntity<Object> resultEntity = ResponseEntity.ok().body("Status: user with id " + id + " deleted");
-            logger.info("HTTP Status: " + HttpStatus.OK.toString());
-            logger.info("Status: user with id: " + id + " deleted");
+            logger.debug("HTTP Status: " + HttpStatus.OK.toString());
+            logger.debug("Status: user with id: " + id + " deleted");
             return resultEntity;
         }
         catch (UserNotFoundException ex) {

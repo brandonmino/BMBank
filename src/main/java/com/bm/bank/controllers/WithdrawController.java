@@ -34,13 +34,13 @@ public class WithdrawController {
     //Attempt to withdraw from given account
     @PostMapping("/withdraw/{userId}")
     public ResponseEntity<Object> makeWithdraw(@PathVariable(required=true) Long userId, @RequestBody Withdraw withdrawDetails) {
-        logger.info("Attempting to make a withdraw from acount with userId: " + userId + " and amount: " + withdrawDetails.getWithdrawAmount());
+        logger.debug("Attempting to make a withdraw from acount with userId: " + userId + " and amount: " + withdrawDetails.getWithdrawAmount());
         try {
             Withdraw newWithdraw = withdrawService.makeWithdraw(userId, withdrawDetails.getWithdrawAmount());
             URI uri = linkTo(methodOn(WithdrawController.class).makeWithdraw(userId, withdrawDetails)).withSelfRel().toUri();
             ResponseEntity<Object> resultEntity = ResponseEntity.created(uri).body(newWithdraw);
-            logger.info("HTTP Status: " + HttpStatus.OK.toString());
-            logger.info("Withdraw from account with id: " + userId + " successful");
+            logger.debug("HTTP Status: " + HttpStatus.OK.toString());
+            logger.debug("Withdraw from account with id: " + userId + " successful");
             return resultEntity;
         }
         catch (UserNotFoundException ex) {

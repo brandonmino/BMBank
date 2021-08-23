@@ -184,3 +184,41 @@
 2021-08-23 12:55:10.877  INFO 20552 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2021-08-23 12:55:10.879  INFO 20552 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2021-08-23 12:55:10.885  INFO 20552 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-08-23 13:44:30.873  INFO 23304 --- [main] com.bm.bank.BankApplication              : Starting BankApplication using Java 16.0.2 on 88JT0F3 with PID 23304 (C:\Users\brandon.mino\Downloads\bank\bank\target\classes started by brandon.mino in C:\Users\brandon.mino\Downloads\bank\bank)
+2021-08-23 13:44:30.877  INFO 23304 --- [main] com.bm.bank.BankApplication              : No active profile set, falling back to default profiles: default
+2021-08-23 13:44:31.637  INFO 23304 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-08-23 13:44:31.712  INFO 23304 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 3 JPA repository interfaces.
+2021-08-23 13:44:32.355  INFO 23304 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-08-23 13:44:32.371  INFO 23304 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-08-23 13:44:32.372  INFO 23304 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.52]
+2021-08-23 13:44:32.566  INFO 23304 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-08-23 13:44:32.568  INFO 23304 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1615 ms
+2021-08-23 13:44:32.814  INFO 23304 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-08-23 13:44:32.881  INFO 23304 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.5.6.Final
+2021-08-23 13:44:33.087  INFO 23304 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-08-23 13:44:33.281  INFO 23304 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-08-23 13:44:33.732  INFO 23304 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-08-23 13:44:33.757  INFO 23304 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-08-23 13:44:34.627  INFO 23304 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-08-23 13:44:34.641  INFO 23304 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-08-23 13:44:35.078  WARN 23304 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-08-23 13:44:35.689  INFO 23304 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-23 13:44:35.709  INFO 23304 --- [main] com.bm.bank.BankApplication              : Started BankApplication in 5.266 seconds (JVM running for 5.659)
+2021-08-23 13:44:38.907  INFO 23304 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-23 13:44:38.909  INFO 23304 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-08-23 13:44:38.910  INFO 23304 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2021-08-23 13:44:38.963  INFO 23304 --- [http-nio-8080-exec-1] c.b.b.exceptions.InvalidTypeException    : HTTP Status: 400 BAD_REQUEST
+2021-08-23 13:44:38.965  INFO 23304 --- [http-nio-8080-exec-1] c.b.b.exceptions.InvalidTypeException    : Invalid type provided in the request
+2021-08-23 13:48:10.303  INFO 23304 --- [http-nio-8080-exec-4] com.bm.bank.controllers.UserController   : Attempting to create user with the following info: com.bm.bank.models.User@1ea23814
+2021-08-23 13:48:10.501  INFO 23304 --- [http-nio-8080-exec-4] com.bm.bank.controllers.UserController   : HTTP Status: 201 CREATED
+2021-08-23 13:48:10.503  INFO 23304 --- [http-nio-8080-exec-4] com.bm.bank.controllers.UserController   : Successfully created new user: com.bm.bank.models.User@1ea23814
+2021-08-23 13:49:14.156  WARN 23304 --- [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2021-08-23 13:49:22.171  INFO 23304 --- [http-nio-8080-exec-8] c.bm.bank.controllers.DepositController  : Attempting to make deposit with the following info: userID: 39 depositAmount: 0
+2021-08-23 13:49:22.252  INFO 23304 --- [http-nio-8080-exec-8] c.bm.bank.controllers.DepositController  : HTTP Status: 201 CREATED
+2021-08-23 13:49:22.252  INFO 23304 --- [http-nio-8080-exec-8] c.bm.bank.controllers.DepositController  : New deposit made with the following details: Deposit{transactionId=null, userId='39', depositAmount=0', initialBalance=0', newBalance=0}
+2021-08-23 13:50:48.445  INFO 23304 --- [http-nio-8080-exec-2] c.bm.bank.controllers.DepositController  : Attempting to make deposit with the following info: userID: 39 depositAmount: 100
+2021-08-23 13:50:48.481  INFO 23304 --- [http-nio-8080-exec-2] c.bm.bank.controllers.DepositController  : HTTP Status: 201 CREATED
+2021-08-23 13:50:48.483  INFO 23304 --- [http-nio-8080-exec-2] c.bm.bank.controllers.DepositController  : New deposit made with the following details: Deposit{transactionId=null, userId='39', depositAmount=100', initialBalance=0', newBalance=0}
+2021-08-23 14:30:39.871  INFO 23304 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-08-23 14:30:39.874  INFO 23304 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-08-23 14:30:39.882  INFO 23304 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

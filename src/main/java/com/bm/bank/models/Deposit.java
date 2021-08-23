@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 //Deposit Model
 @Entity
-@Table(name = "DepositTransactions")
+@Table(name = "Deposit")
 public class Deposit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -9,7 +9,7 @@ import javax.persistence.Table;
 //Withdraw Model
 @Entity
 @Table(name = "Withdraw")
-public class Withdraw {
+public class WithdrawDAO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long transactionId;
@@ -18,7 +18,7 @@ public class Withdraw {
     int initialBalance;
     int newBalance;
 
-    public Withdraw() {};
+    public WithdrawDAO() {};
 
     public Long getTransactionId() {
         return transactionId;

@@ -6,19 +6,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//Withdraw Model
+//Deposit Model
 @Entity
-@Table(name = "Withdraw")
-public class Withdraw {
+@Table(name = "Deposit")
+public class DepositDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long transactionId;
     Long userId;
-    int withdrawAmount;
+    int depositAmount;
     int initialBalance;
     int newBalance;
 
-    public Withdraw() {};
+    public DepositDTO() {};
 
     public Long getTransactionId() {
         return transactionId;
@@ -28,8 +28,8 @@ public class Withdraw {
         return userId;
     }
 
-    public int getWithdrawAmount() {
-        return withdrawAmount;
+    public int getDepositAmount() {
+        return depositAmount;
     }
 
     public int getInitialBalance() {
@@ -48,8 +48,8 @@ public class Withdraw {
         userId = newId;
     }
 
-    public void setWithdrawAmount(int newAmount) {
-        withdrawAmount = newAmount;
+    public void setDepositAmount(int newAmount) {
+        depositAmount = newAmount;
     }
 
     public void setInitialBalance(int newBalance) {
@@ -65,7 +65,7 @@ public class Withdraw {
         final StringBuilder sb = new StringBuilder("Deposit{");
         sb.append("transactionId=").append(transactionId);
         sb.append(", userId='").append(userId).append('\'');
-        sb.append(", withdrawAmount=").append(withdrawAmount).append('\'');
+        sb.append(", depositAmount=").append(depositAmount).append('\'');
         sb.append(", initialBalance=").append(initialBalance).append('\'');
         sb.append(", newBalance=").append(newBalance);
         sb.append('}');
