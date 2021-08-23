@@ -12,6 +12,8 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+import java.net.URI;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,31 +29,25 @@ import com.bm.bank.services.WithdrawService;
 public class WithdrawController {
     @Autowired
     private WithdrawService withdrawService;
-    private static final Logger logger = LoggerFactory.getLogger(DepositController.class);
+    private static final Logger logger = LoggerFactory.getLogger(WithdrawController.class);
 
     //Attempt to withdraw from given account
     @PostMapping("/withdraw/{userId}")
-    public ResponseEntity<String> makeWithdraw(@PathVariable(required=true) Long userId, @RequestBody Withdraw withdrawDetails) {
+    public ResponseEntity<Object> makeWithdraw(@PathVariable(required=true) Long userId, @RequestBody Withdraw withdrawDetails) {
         try {
-            logger.info("Attempting to make withdraw with the following info: userID: " + userId + " withdrawAmount: " + withdrawDetails.getWithdrawAmount());
             Withdraw newWithdraw = withdrawService.makeWithdraw(userId, withdrawDetails.getWithdrawAmount());
-            EntityModel<Withdraw> entity = EntityModel.of(newWithdraw, linkTo(methodOn(WithdrawController.class).makeWithdraw(userId, withdrawDetails)).withSelfRel());
-            logger.info("HTTP Status: " + HttpStatus.CREATED.toString());
-            logger.info(entity.toString());
-            return new ResponseEntity<String>(entity.toString(), HttpStatus.CREATED); 
-            // return EntityModel.of(newWithdraw,
-            //         linkTo(methodOn(WithdrawController.class).makeWithdraw(userId, withdrawDetails)).withSelfRel()
-            // );
+            URI uri = linkTo(methodOn(WithdrawController.class).makeWithdraw(userId, withdrawDetails)).withSelfRel().toUri();
+            return ResponseEntity.created(uri).body(newWithdraw);
         }
         catch (UserNotFoundException ex) {
-            logger.info("HTTP Status: " + HttpStatus.METHOD_NOT_ALLOWED.toString());
-            logger.info(ex.toString());
-            return new ResponseEntity<String>(ex.toString(), HttpStatus.METHOD_NOT_ALLOWED);
+            logger.warn("HTTP Status: " + HttpStatus.METHOD_NOT_ALLOWED.toString());
+            logger.warn(ex.toString());
+            return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
         }   
         catch (UserIdNotProvidedException | UserNotProvidedException | ExcessiveWithdrawException ex) {
-            logger.info("HTTP Status: " + HttpStatus.BAD_REQUEST.toString());
-            logger.info(ex.toString());
-            return new ResponseEntity<String>(ex.toString(), HttpStatus.BAD_REQUEST);
+            logger.warn("HTTP Status: " + HttpStatus.BAD_REQUEST.toString());
+            logger.warn(ex.toString());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
