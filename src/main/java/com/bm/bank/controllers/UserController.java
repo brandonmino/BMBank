@@ -33,15 +33,19 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    private static final Logger logger = LoggerFactory.getLogger(DepositController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     //Get the existing account
     @GetMapping("/user/{id}")
     public ResponseEntity<Object> getId(@PathVariable(required=true) Long id) {
+        logger.info("Attempting to retrieve user with the following info: userID: " + id);
         try {
             User retrievedUser = userService.findById(id);
-            URI uri = linkTo(methodOn(UserController.class).getId(id)).withSelfRel().toUri();
-            return ResponseEntity.created(uri).body(retrievedUser);
+            ResponseEntity<Object> resultEntity = ResponseEntity.ok().body(retrievedUser);
+            logger.info("HTTP Status: " + HttpStatus.OK.toString());
+            logger.info("Successfully retrieved user with id: " + id + ". Info: " + retrievedUser);
+            return resultEntity;
+            //return ResponseEntity.created(uri).body(retrievedUser);
         }
         catch (UserNotFoundException ex) {
             logger.warn("HTTP Status: " + HttpStatus.METHOD_NOT_ALLOWED.toString());
@@ -58,10 +62,14 @@ public class UserController {
     //Create an account with given details
     @PostMapping("/user/create")
     public ResponseEntity<Object> createUser(@RequestBody User user) {
+        logger.info("Attempting to create user with the following info: " + user);
         try {
             User newUser = userService.createNewUser(user);
-            URI uri = linkTo(methodOn(UserController.class).createUser(user)).withSelfRel().toUri();
-            return ResponseEntity.created(uri).body(newUser);
+            URI uri = linkTo(methodOn(UserController.class).createUser(newUser)).withSelfRel().toUri();
+            ResponseEntity<Object> resultEntity = ResponseEntity.created(uri).body(newUser);
+            logger.info("HTTP Status: " + HttpStatus.CREATED.toString());
+            logger.info("Successfully created new user: " + newUser);
+            return resultEntity;
         }
         catch (UserNotProvidedException ex) {
             logger.warn("HTTP Status: " + HttpStatus.METHOD_NOT_ALLOWED.toString());
@@ -73,10 +81,13 @@ public class UserController {
     //Delete the given account
     @DeleteMapping("/user/delete/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable(required=true) Long id) {
+        logger.info("Attempting to delete user with the following id: " + id);
         try {
             userService.delete(id);
-            URI uri = linkTo(methodOn(UserController.class).deleteUser(id)).withSelfRel().toUri();
-            return ResponseEntity.created(uri).body("Status: user with id " + id + " deleted");
+            ResponseEntity<Object> resultEntity = ResponseEntity.ok().body("Status: user with id " + id + " deleted");
+            logger.info("HTTP Status: " + HttpStatus.OK.toString());
+            logger.info("Status: user with id: " + id + " deleted");
+            return resultEntity;
         }
         catch (UserNotFoundException ex) {
             logger.warn("HTTP Status: " + HttpStatus.METHOD_NOT_ALLOWED.toString());

@@ -47,7 +47,8 @@ public class UserService implements IUserService {
             newUser.setBalance(0);
             newUser.setFirstName(user.getFirstName());
             newUser.setLastName(user.getLastName());
-            return userRepo.save(user);
+            User resultUser = userRepo.save(user);
+            return resultUser;
         }
     }
 

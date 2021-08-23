@@ -28,15 +28,20 @@ import com.bm.bank.services.WithdrawService;
 public class WithdrawController {
     @Autowired
     private WithdrawService withdrawService;
+
     private static final Logger logger = LoggerFactory.getLogger(WithdrawController.class);
 
     //Attempt to withdraw from given account
     @PostMapping("/withdraw/{userId}")
     public ResponseEntity<Object> makeWithdraw(@PathVariable(required=true) Long userId, @RequestBody Withdraw withdrawDetails) {
+        logger.info("Attempting to make a withdraw from acount with userId: " + userId + " and amount: " + withdrawDetails.getWithdrawAmount());
         try {
             Withdraw newWithdraw = withdrawService.makeWithdraw(userId, withdrawDetails.getWithdrawAmount());
             URI uri = linkTo(methodOn(WithdrawController.class).makeWithdraw(userId, withdrawDetails)).withSelfRel().toUri();
-            return ResponseEntity.created(uri).body(newWithdraw);
+            ResponseEntity<Object> resultEntity = ResponseEntity.created(uri).body(newWithdraw);
+            logger.info("HTTP Status: " + HttpStatus.OK.toString());
+            logger.info("Withdraw from account with id: " + userId + " successful");
+            return resultEntity;
         }
         catch (UserNotFoundException ex) {
             logger.warn("HTTP Status: " + HttpStatus.METHOD_NOT_ALLOWED.toString());

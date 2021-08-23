@@ -33,10 +33,14 @@ public class DepositController {
     //Attempt to deposit to given account
     @PostMapping("/deposit/{userId}")
     public ResponseEntity<Object> makeDeposit(@PathVariable(required=true) Long userId, @RequestBody Deposit depositDetails) {
+        logger.info("Attempting to make deposit with the following info: userID: " + userId + " depositAmount: " + depositDetails.getDepositAmount());
         try {
             Deposit newDeposit = depositService.makeDeposit(userId, depositDetails.getDepositAmount());
             URI uri = linkTo(methodOn(DepositController.class).makeDeposit(userId, depositDetails)).withSelfRel().toUri();
-            return ResponseEntity.created(uri).body(newDeposit);
+            ResponseEntity<Object> resultEntity = ResponseEntity.ok().body(newDeposit);
+            logger.info("HTTP Status: " + HttpStatus.CREATED.toString());
+            logger.info("New deposit made with the following details: " + depositDetails);
+            return resultEntity;
         }
         catch (UserNotFoundException ex) {
             logger.warn("HTTP Status: " + HttpStatus.METHOD_NOT_ALLOWED.toString());
