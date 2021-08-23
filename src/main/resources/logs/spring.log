@@ -1,0 +1,44 @@
+2021-08-23 10:46:03.919  INFO 22728 --- [main] com.bm.bank.BankApplication              : Starting BankApplication using Java 16.0.2 on 88JT0F3 with PID 22728 (C:\Users\brandon.mino\Downloads\bank\bank\target\classes started by brandon.mino in C:\Users\brandon.mino\Downloads\bank\bank)
+2021-08-23 10:46:03.922  INFO 22728 --- [main] com.bm.bank.BankApplication              : No active profile set, falling back to default profiles: default
+2021-08-23 10:46:04.647  INFO 22728 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-08-23 10:46:04.709  INFO 22728 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 3 JPA repository interfaces.
+2021-08-23 10:46:05.378  INFO 22728 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-08-23 10:46:05.401  INFO 22728 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-08-23 10:46:05.404  INFO 22728 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.52]
+2021-08-23 10:46:05.535  INFO 22728 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-08-23 10:46:05.536  INFO 22728 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1536 ms
+2021-08-23 10:46:05.705  INFO 22728 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-08-23 10:46:05.756  INFO 22728 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.5.6.Final
+2021-08-23 10:46:05.904  INFO 22728 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-08-23 10:46:05.993  INFO 22728 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-08-23 10:46:06.285  INFO 22728 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-08-23 10:46:06.302  INFO 22728 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-08-23 10:46:06.873  INFO 22728 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-08-23 10:46:06.884  INFO 22728 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-08-23 10:46:07.178  WARN 22728 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-08-23 10:46:07.510  INFO 22728 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-23 10:46:07.521  INFO 22728 --- [main] com.bm.bank.BankApplication              : Started BankApplication in 4.07 seconds (JVM running for 4.44)
+2021-08-23 10:46:12.043  INFO 22728 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-23 10:46:12.044  INFO 22728 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-08-23 10:46:12.045  INFO 22728 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2021-08-23 10:46:12.115  INFO 22728 --- [http-nio-8080-exec-1] com.bm.bank.services.DepositService      : Attempting to make deposit with the following info: userID: 16 depositAmount: 100
+2021-08-23 10:46:12.250  INFO 22728 --- [http-nio-8080-exec-1] com.bm.bank.services.DepositService      : HTTP Status: 201 CREATED
+2021-08-23 10:46:12.250  INFO 22728 --- [http-nio-8080-exec-1] com.bm.bank.services.DepositService      : Deposit{transactionId=31, userId='16', depositAmount=100', initialBalance=1340', newBalance=1440}
+2021-08-23 10:46:13.926  INFO 22728 --- [http-nio-8080-exec-3] com.bm.bank.services.DepositService      : Attempting to make deposit with the following info: userID: 16 depositAmount: 100
+2021-08-23 10:46:13.952  INFO 22728 --- [http-nio-8080-exec-3] com.bm.bank.services.DepositService      : HTTP Status: 201 CREATED
+2021-08-23 10:46:13.953  INFO 22728 --- [http-nio-8080-exec-3] com.bm.bank.services.DepositService      : Deposit{transactionId=32, userId='16', depositAmount=100', initialBalance=1440', newBalance=1540}
+2021-08-23 10:46:15.480  INFO 22728 --- [http-nio-8080-exec-4] com.bm.bank.services.DepositService      : Attempting to make deposit with the following info: userID: 16 depositAmount: 100
+2021-08-23 10:46:15.506  INFO 22728 --- [http-nio-8080-exec-4] com.bm.bank.services.DepositService      : HTTP Status: 201 CREATED
+2021-08-23 10:46:15.507  INFO 22728 --- [http-nio-8080-exec-4] com.bm.bank.services.DepositService      : Deposit{transactionId=33, userId='16', depositAmount=100', initialBalance=1540', newBalance=1640}
+2021-08-23 10:46:16.876  INFO 22728 --- [http-nio-8080-exec-5] com.bm.bank.services.DepositService      : Attempting to make deposit with the following info: userID: 16 depositAmount: 100
+2021-08-23 10:46:16.897  INFO 22728 --- [http-nio-8080-exec-5] com.bm.bank.services.DepositService      : HTTP Status: 201 CREATED
+2021-08-23 10:46:16.898  INFO 22728 --- [http-nio-8080-exec-5] com.bm.bank.services.DepositService      : Deposit{transactionId=34, userId='16', depositAmount=100', initialBalance=1640', newBalance=1740}
+2021-08-23 10:46:18.204  INFO 22728 --- [http-nio-8080-exec-6] com.bm.bank.services.DepositService      : Attempting to make deposit with the following info: userID: 16 depositAmount: 100
+2021-08-23 10:46:18.229  INFO 22728 --- [http-nio-8080-exec-6] com.bm.bank.services.DepositService      : HTTP Status: 201 CREATED
+2021-08-23 10:46:18.230  INFO 22728 --- [http-nio-8080-exec-6] com.bm.bank.services.DepositService      : Deposit{transactionId=35, userId='16', depositAmount=100', initialBalance=1740', newBalance=1840}
+2021-08-23 10:46:20.650  INFO 22728 --- [http-nio-8080-exec-7] com.bm.bank.services.DepositService      : Attempting to make deposit with the following info: userID: 16 depositAmount: 100
+2021-08-23 10:46:20.678  INFO 22728 --- [http-nio-8080-exec-7] com.bm.bank.services.DepositService      : HTTP Status: 201 CREATED
+2021-08-23 10:46:20.679  INFO 22728 --- [http-nio-8080-exec-7] com.bm.bank.services.DepositService      : Deposit{transactionId=36, userId='16', depositAmount=100', initialBalance=1840', newBalance=1940}
+2021-08-23 10:46:39.038  INFO 22728 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-08-23 10:46:39.040  INFO 22728 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-08-23 10:46:39.046  INFO 22728 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

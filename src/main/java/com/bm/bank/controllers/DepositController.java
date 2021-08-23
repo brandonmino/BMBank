@@ -12,6 +12,8 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+import java.net.URI;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,27 +33,21 @@ public class DepositController {
 
     //Attempt to deposit to given account
     @PostMapping("/deposit/{userId}")
-    public ResponseEntity<String> makeDeposit(@PathVariable(required=true) Long userId, @RequestBody Deposit depositDetails) {
+    public ResponseEntity<Object> makeDeposit(@PathVariable(required=true) Long userId, @RequestBody Deposit depositDetails) {
         try {
-            logger.info("Attempting to make deposit with the following info: userID: " + userId + " depositAmount: " + depositDetails.getDepositAmount());
             Deposit newDeposit = depositService.makeDeposit(userId, depositDetails.getDepositAmount());
-            EntityModel<Deposit> entity = EntityModel.of(newDeposit, linkTo(methodOn(DepositController.class).makeDeposit(userId, depositDetails)).withSelfRel());
-            logger.info("HTTP Status: " + HttpStatus.CREATED.toString());
-            logger.info(entity.toString());
-            return new ResponseEntity<String>(entity.toString(), HttpStatus.CREATED); 
-            // return EntityModel.of(newDeposit,
-            //         linkTo(methodOn(DepositController.class).makeDeposit(userId, depositDetails)).withSelfRel()
-            // );
+            URI uri = linkTo(methodOn(DepositController.class).makeDeposit(userId, depositDetails)).withSelfRel().toUri();
+            return ResponseEntity.created(uri).body(newDeposit);
         }
         catch (UserNotFoundException ex) {
-            logger.info("HTTP Status: " + HttpStatus.METHOD_NOT_ALLOWED.toString());
-            logger.info(ex.toString());
-            return new ResponseEntity<String>(ex.toString(), HttpStatus.METHOD_NOT_ALLOWED);
+            logger.warn("HTTP Status: " + HttpStatus.METHOD_NOT_ALLOWED.toString());
+            logger.warn(ex.toString());
+            return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
         }   
         catch (UserIdNotProvidedException | UserNotProvidedException | NegativeDepositException ex) {
-            logger.info("HTTP Status: " + HttpStatus.BAD_REQUEST.toString());
-            logger.info(ex.toString());
-            return new ResponseEntity<String>(ex.toString(), HttpStatus.BAD_REQUEST);
+            logger.warn("HTTP Status: " + HttpStatus.BAD_REQUEST.toString());
+            logger.warn(ex.toString());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
