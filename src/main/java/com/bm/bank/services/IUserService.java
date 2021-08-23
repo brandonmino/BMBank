@@ -6,5 +6,5 @@ import com.bm.bank.models.User;
 public interface IUserService {
     User findById(Long id);
     User createNewUser(User user);
-    void delete(User user);
+    void delete(Long id);
 }

@@ -52,7 +52,18 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void delete(User user) {
-        userRepo.delete(user);
+    public void delete(Long id) {
+        if (id == null) {
+            throw new UserNotProvidedException();
+        }
+        else {
+            Optional<User> user = userRepo.findById(id);
+            if (user.isPresent()) {
+                userRepo.delete(user.get());
+            }
+            else {
+                throw new UserNotFoundException(id);
+            }
+        }
     }
 }
