@@ -1,10 +1,10 @@
-package com.brandon.bank;
+package com.bm.bank;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BankApplicationTests {
+class BMBankApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,8 +1,8 @@
 package com.bm.bank.services;
 
-import com.bm.bank.models.Withdraw;
+import org.springframework.http.ResponseEntity;
 
 //Withdraw Service Interface
 public interface IWithdrawService {
-    public Withdraw makeWithdraw(Long id, int amount);
+    public ResponseEntity<Object> makeWithdraw(Long id, int amount);
 }

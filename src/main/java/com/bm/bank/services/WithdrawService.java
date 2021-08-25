@@ -1,5 +1,6 @@
 package com.bm.bank.services;
 
+import java.net.URI;
 import java.util.Optional;
 
 import com.bm.bank.exceptions.ExcessiveWithdrawException;
@@ -11,7 +12,14 @@ import com.bm.bank.repos.IWithdrawRepo;
 import com.bm.bank.repos.IUserRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class WithdrawService implements IWithdrawService {
@@ -20,8 +28,11 @@ public class WithdrawService implements IWithdrawService {
     @Autowired
     private IUserRepo userRepo;
 
+    private static final Logger logger = LoggerFactory.getLogger(WithdrawService.class);
+
     @Override
-    public Withdraw makeWithdraw(Long userId, int amount) {
+    public ResponseEntity<Object> makeWithdraw(Long userId, int amount) {
+        logger.debug("Attempting to make a withdraw from acount with userId: " + userId + " and amount: " + amount);
         if (userId == null) {
             throw new UserIdNotProvidedException();
         }
@@ -42,11 +53,16 @@ public class WithdrawService implements IWithdrawService {
                     withdrawUser.setBalance(newBalance);
 
                     userRepo.save(withdrawUser);
-                    return withdrawRepo.save(withdraw);
+                    Withdraw resultWithdraw = withdrawRepo.save(withdraw);
+                    URI uri = linkTo(methodOn(WithdrawService.class).makeWithdraw(userId, amount)).withSelfRel().toUri();
+                    ResponseEntity<Object> resultEntity = ResponseEntity.created(uri).body(resultWithdraw);
+                    logger.debug("HTTP Status: " + HttpStatus.OK.toString());
+                    logger.debug("Withdraw from account with id: " + userId + " successful");
+                    return resultEntity;
                 }
             }
             else {
-                throw new UserNotFoundException(userId);
+                throw new UserNotFoundException();
             }
         }
     }
