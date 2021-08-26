@@ -1,6 +1,6 @@
 package com.bm.bank.models;
 
-//Deposit Model
+//Deposit Model for handling a response
 public class DepositResponseDTO {
     private String message;
 

@@ -1,5 +1,6 @@
 package com.bm.bank.exceptions;
 
+////General exception for all sub-exceptions
 public class BMBankException extends RuntimeException {
     private int errorCode;
     private String errorMessage;

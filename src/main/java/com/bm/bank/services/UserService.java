@@ -31,6 +31,7 @@ public class UserService implements IUserService {
 
     public UserService() {}
 
+    //Find a given user from the database given their id
     @Override
     public ResponseEntity<Object> findById(UserRequestDTO request) {
         Long userId = request.getId();
@@ -55,7 +56,7 @@ public class UserService implements IUserService {
         }
     }
 
-    //Save the given user to the database
+    //Save the given user to the database given the user's details
     @Override
     public ResponseEntity<Object> createUser(UserRequestDTO request) {
         logger.debug("Attempting to create user with the following info: " + request);
@@ -78,6 +79,7 @@ public class UserService implements IUserService {
         }
     }
 
+    //Delete a given user from the database given their id
     @Override
     public ResponseEntity<Object> delete(UserRequestDTO request) {
         Long userId = request.getId();

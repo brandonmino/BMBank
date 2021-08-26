@@ -14,6 +14,7 @@ import com.bm.bank.models.ExceptionResponseDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+//Handles all errors received by program. Returns error code and message for given error.
 @ControllerAdvice
 @RestController
 public class ExceptionController extends ResponseEntityExceptionHandler {

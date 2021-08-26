@@ -1,5 +1,6 @@
 package com.bm.bank.models;
 
+//Exception Model for handling a response
 public class ExceptionResponseDTO {
     private int error;
     private String message;

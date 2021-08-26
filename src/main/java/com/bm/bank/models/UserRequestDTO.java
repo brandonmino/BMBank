@@ -1,6 +1,6 @@
 package com.bm.bank.models;
 
-//User Model
+//User Model for making a request
 public class UserRequestDTO {
     private Long id;
     private String firstName;

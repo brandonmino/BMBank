@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//User Model
+//User Object Model for interacting with database
 @Entity
 @Table(name = "User")
 public class UserDAO {

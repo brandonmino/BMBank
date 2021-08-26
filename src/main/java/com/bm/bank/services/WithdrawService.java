@@ -31,6 +31,7 @@ public class WithdrawService implements IWithdrawService {
 
     private static final Logger logger = LoggerFactory.getLogger(WithdrawService.class);
 
+    //Attempt to make the given withdraw
     @Override
     public ResponseEntity<Object> makeWithdraw(Long userId, int amount) {
         logger.debug("Attempting to make a withdraw from acount with userId: " + userId + " and amount: " + amount);

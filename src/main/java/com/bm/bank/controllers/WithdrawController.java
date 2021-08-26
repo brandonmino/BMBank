@@ -17,7 +17,7 @@ public class WithdrawController {
     @Autowired
     private WithdrawService withdrawService;
 
-    //Attempt to withdraw from given account
+    //Attempt to make a withdraw from a given account. Returns code and message if succcessful or error if not.
     @PostMapping("/withdraw/{userId}")
     public ResponseEntity<Object> makeWithdraw(@PathVariable(required=true) Long userId, @RequestBody Withdraw withdrawDetails) {
             return withdrawService.makeWithdraw(userId, withdrawDetails.getWithdrawAmount());

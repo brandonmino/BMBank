@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//Withdraw Model
+//Withdraw Object Model for interacting with database
 @Entity
 @Table(name = "Withdraw")
 public class WithdrawDAO {

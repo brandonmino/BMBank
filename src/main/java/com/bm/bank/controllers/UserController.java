@@ -19,19 +19,19 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    //Get the existing account
+    //Get an existing account given the user id. Returns code and message if succcessful or error if not.
     @GetMapping("/user/{id}")
     public ResponseEntity<Object> getId(@PathVariable(required=true) UserRequestDTO request) {
         return userService.findById(request);
     }
 
-    //Create an account with given details
+    //Create an account with given details. Returns code and message if succcessful or error if not.
     @PostMapping("/user/create")
     public ResponseEntity<Object> createUser(@RequestBody UserRequestDTO request) {
         return userService.createUser(request);
     }
 
-    //Delete the given account
+    //Delete an account given the user id. Returns code and message if succcessful or error if not.
     @DeleteMapping("/user/delete/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable(required=true) UserRequestDTO request) {
         return userService.delete(request);

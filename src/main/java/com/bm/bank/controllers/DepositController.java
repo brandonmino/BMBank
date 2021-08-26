@@ -17,7 +17,7 @@ public class DepositController {
     @Autowired
     private DepositService depositService;
 
-    //Attempt to deposit to given account
+    //Attempt to make a deposit to a given account. Returns code and message if succcessful or error if not.
     @PostMapping("/deposit/{userId}")
     public ResponseEntity<Object> makeDeposit(@PathVariable(required=true) Long userId, @RequestBody Deposit depositDetails) {
         return depositService.makeDeposit(userId, depositDetails.getDepositAmount());

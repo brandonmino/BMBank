@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//Deposit Model
+//Deposit Service-Level Object Model
 @Entity
 @Table(name = "Deposit")
 public class Deposit {
