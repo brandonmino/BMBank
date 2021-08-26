@@ -1,15 +1,14 @@
 package com.bm.bank.models;
 
-//Withdraw Model
-public class WithdrawDTO {
-    String message;
+//Deposit Model
+public class DepositRequestDTO {
+    private String message;
 
-    public WithdrawDTO(String message) {
+    public DepositRequestDTO(String message) {
         this.message = message;
     }
 
     public String getMessage() {
         return message;
     }
-
 }

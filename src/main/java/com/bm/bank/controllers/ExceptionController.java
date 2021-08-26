@@ -9,7 +9,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.bm.bank.exceptions.BMBankException;
-import com.bm.bank.models.ExceptionResponse;
+import com.bm.bank.models.ExceptionResponseDTO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,37 +20,9 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
     final Logger logger = LoggerFactory.getLogger(ExceptionController.class);
 
     @ExceptionHandler(BMBankException.class)
-    public final ResponseEntity<ExceptionResponse> handleAllBadRequestExceptions(BMBankException err, WebRequest request) {
+    public final ResponseEntity<ExceptionResponseDTO> handleAllBadRequestExceptions(BMBankException err, WebRequest request) {
         logger.warn("code: " + err.getErrorCode() + " message: " + err.getErrorMessage());
-        ExceptionResponse exceptionResponse = new ExceptionResponse(err.getErrorCode(), err.getErrorMessage());
-        return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.BAD_REQUEST);
+        ExceptionResponseDTO exceptionResponse = new ExceptionResponseDTO(err.getErrorCode(), err.getErrorMessage());
+        return new ResponseEntity<ExceptionResponseDTO>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
-
-    // @ExceptionHandler(ExcessiveWithdrawException.class)
-    // public final ResponseEntity<BMBankException> handleNegativeDepositException(NegativeDepositException err, WebRequest request) {
-    //     logger.warn("Error code: " + err.getErrorCode() + " message: " + err.getErrorMessage());
-    //     BMBankException exceptionResponse = new BMBankException(err.getErrorCode(), err.getErrorMessage());
-    //     return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
-    // }
-
-    // @ExceptionHandler(UserIdNotProvidedException.class)
-    // public final ResponseEntity<BMBankException> handleUserIdNotProvided(UserIdNotProvidedException err, WebRequest request) {
-    //     logger.warn("Error code: " + err.getErrorCode() + " message: " + err.getErrorMessage());
-    //     BMBankException exceptionResponse = new BMBankException(err.getErrorCode(), err.getErrorMessage());
-    //     return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
-    // }
-
-    // @ExceptionHandler(UserNotFoundException.class)
-    // public final ResponseEntity<BMBankException> handleUserNotFoundException(UserNotFoundException err, WebRequest request) {
-    //     logger.warn("Error code: " + err.getErrorCode() + " message: " + err.getErrorMessage());
-    //     BMBankException exceptionResponse = new BMBankException(err.getErrorCode(), err.getErrorMessage());
-    //     return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
-    // }
-
-    // @ExceptionHandler(UserNotProvidedException.class)
-    // public final ResponseEntity<BMBankException> handleUserNotProvidedException(UserNotProvidedException err, WebRequest request) {
-    //     logger.warn("Error code: " + err.getErrorCode() + " message: " + err.getErrorMessage());
-    //     BMBankException exceptionResponse = new BMBankException(err.getErrorCode(), err.getErrorMessage());
-    //     return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
-    // }
 }

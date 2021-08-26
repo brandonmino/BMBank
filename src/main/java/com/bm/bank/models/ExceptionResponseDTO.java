@@ -1,10 +1,10 @@
 package com.bm.bank.models;
 
-public class ExceptionResponse {
+public class ExceptionResponseDTO {
     private int error;
     private String message;
     
-    public ExceptionResponse(int code, String errorMessage) {
+    public ExceptionResponseDTO(int code, String errorMessage) {
         this.error = code;
         this.message = errorMessage;
     }

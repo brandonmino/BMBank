@@ -7,6 +7,8 @@ import com.bm.bank.exceptions.UserIdNotProvidedException;
 import com.bm.bank.exceptions.UserNotFoundException;
 import com.bm.bank.exceptions.UserNotProvidedException;
 import com.bm.bank.models.User;
+import com.bm.bank.models.UserRequestDTO;
+import com.bm.bank.models.UserResponseDTO;
 import com.bm.bank.repos.IUserRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,18 +32,21 @@ public class UserService implements IUserService {
     public UserService() {}
 
     @Override
-    public ResponseEntity<Object> findById(Long id) {
-        logger.debug("Attempting to retrieve user with the following id: " + id);
-        if (id == null) {
+    public ResponseEntity<Object> findById(UserRequestDTO request) {
+        Long userId = request.getId();
+        logger.debug("Attempting to retrieve user with the following id: " + userId);
+        if (userId == null) {
             throw new UserIdNotProvidedException();
         }
         else {
-            Optional<User> user = userRepo.findById(id);
+            Optional<User> user = userRepo.findById(request.getId());
             if (user.isPresent()) {
                 User retrievedUser = user.get();
-                ResponseEntity<Object> resultEntity = ResponseEntity.ok().body(retrievedUser);
+
+                UserResponseDTO responseObject = new UserResponseDTO(retrievedUser, "Successfully retrieved user with id " + userId);
+                ResponseEntity<Object> resultEntity = ResponseEntity.ok().body(responseObject);
                 logger.debug("HTTP Status: " + HttpStatus.OK.toString());
-                logger.debug("Successfully retrieved user with id: " + id + ". Info: " + retrievedUser);
+                logger.debug("Successfully retrieved user with id: " + userId + ". Info: " + retrievedUser);
                 return resultEntity;
             }
             else {
@@ -52,20 +57,21 @@ public class UserService implements IUserService {
 
     //Save the given user to the database
     @Override
-    public ResponseEntity<Object> createNewUser(User user) {
-        logger.debug("Attempting to create user with the following info: " + user);
-        if (user == null) {
+    public ResponseEntity<Object> createUser(UserRequestDTO request) {
+        logger.debug("Attempting to create user with the following info: " + request);
+        if (request == null) {
             throw new UserNotProvidedException();
         }
         else {
             User newUser = new User();
-            newUser.setId(user.getId());
             newUser.setBalance(0);
-            newUser.setFirstName(user.getFirstName());
-            newUser.setLastName(user.getLastName());
-            User resultUser = userRepo.save(user);
-            URI uri = linkTo(methodOn(UserService.class).createNewUser(resultUser)).withSelfRel().toUri();
-            ResponseEntity<Object> resultEntity = ResponseEntity.created(uri).body(resultUser);
+            newUser.setFirstName(request.getFirstName());
+            newUser.setLastName(request.getLastName());
+            userRepo.save(newUser);
+
+            UserResponseDTO responseObject = new UserResponseDTO("Successfully created user with id " + newUser.getId());
+            URI uri = linkTo(methodOn(UserService.class).createUser(request)).withSelfRel().toUri();
+            ResponseEntity<Object> resultEntity = ResponseEntity.created(uri).body(responseObject);
             logger.debug("HTTP Status: " + HttpStatus.CREATED.toString());
             logger.debug("Successfully created new user: " + newUser);
             return resultEntity;
@@ -73,18 +79,20 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public ResponseEntity<Object> delete(Long id) {
-        logger.debug("Attempting to delete user with the following id: " + id);
-        if (id == null) {
+    public ResponseEntity<Object> delete(UserRequestDTO request) {
+        Long userId = request.getId();
+        logger.debug("Attempting to delete user with the following id: " + userId);
+        if (userId == null) {
             throw new UserNotProvidedException();
         }
         else {
-            Optional<User> user = userRepo.findById(id);
+            Optional<User> user = userRepo.findById(userId);
             if (user.isPresent()) {
                 userRepo.delete(user.get());
-                ResponseEntity<Object> resultEntity = ResponseEntity.ok().body("Status: user with id " + id + " deleted");
+                UserResponseDTO responseObject = new UserResponseDTO("Successfully deleted user with id " + userId);
+                ResponseEntity<Object> resultEntity = ResponseEntity.ok().body(responseObject);
                 logger.debug("HTTP Status: " + HttpStatus.OK.toString());
-                logger.debug("Status: user with id: " + id + " deleted");
+                logger.debug("Status: user with id: " + userId + " deleted");
                 return resultEntity;
             }
             else {

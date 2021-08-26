@@ -7,6 +7,7 @@ import com.bm.bank.exceptions.ExcessiveWithdrawException;
 import com.bm.bank.exceptions.UserIdNotProvidedException;
 import com.bm.bank.exceptions.UserNotFoundException;
 import com.bm.bank.models.Withdraw;
+import com.bm.bank.models.WithdrawDTO;
 import com.bm.bank.models.User;
 import com.bm.bank.repos.IWithdrawRepo;
 import com.bm.bank.repos.IUserRepo;
@@ -51,11 +52,12 @@ public class WithdrawService implements IWithdrawService {
                     withdraw.setInitialBalance(withdrawUser.getBalance());
                     withdraw.setNewBalance(newBalance);
                     withdrawUser.setBalance(newBalance);
-
                     userRepo.save(withdrawUser);
-                    Withdraw resultWithdraw = withdrawRepo.save(withdraw);
+                    withdrawRepo.save(withdraw);
+
+                    WithdrawDTO responseObject = new WithdrawDTO("Successfully withdrew from account with id " + userId);
                     URI uri = linkTo(methodOn(WithdrawService.class).makeWithdraw(userId, amount)).withSelfRel().toUri();
-                    ResponseEntity<Object> resultEntity = ResponseEntity.created(uri).body(resultWithdraw);
+                    ResponseEntity<Object> resultEntity = ResponseEntity.created(uri).body(responseObject);
                     logger.debug("HTTP Status: " + HttpStatus.OK.toString());
                     logger.debug("Withdraw from account with id: " + userId + " successful");
                     return resultEntity;

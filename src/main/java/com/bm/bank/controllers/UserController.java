@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
-import com.bm.bank.models.User;
+import com.bm.bank.models.UserRequestDTO;
 import com.bm.bank.services.UserService;
 
 //User controller object
@@ -21,20 +21,20 @@ public class UserController {
 
     //Get the existing account
     @GetMapping("/user/{id}")
-    public ResponseEntity<Object> getId(@PathVariable(required=true) Long id) {
-        return userService.findById(id);
+    public ResponseEntity<Object> getId(@PathVariable(required=true) UserRequestDTO request) {
+        return userService.findById(request);
     }
 
     //Create an account with given details
     @PostMapping("/user/create")
-    public ResponseEntity<Object> createUser(@RequestBody User user) {
-        return userService.createNewUser(user);
+    public ResponseEntity<Object> createUser(@RequestBody UserRequestDTO request) {
+        return userService.createUser(request);
     }
 
     //Delete the given account
     @DeleteMapping("/user/delete/{id}")
-    public ResponseEntity<Object> deleteUser(@PathVariable(required=true) Long id) {
-        return userService.delete(id);
+    public ResponseEntity<Object> deleteUser(@PathVariable(required=true) UserRequestDTO request) {
+        return userService.delete(request);
     }
 
 }

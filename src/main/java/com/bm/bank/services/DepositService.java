@@ -7,6 +7,7 @@ import com.bm.bank.exceptions.NegativeDepositException;
 import com.bm.bank.exceptions.UserIdNotProvidedException;
 import com.bm.bank.exceptions.UserNotFoundException;
 import com.bm.bank.models.Deposit;
+import com.bm.bank.models.DepositResponseDTO;
 import com.bm.bank.models.User;
 import com.bm.bank.repos.IDepositRepo;
 import com.bm.bank.repos.IUserRepo;
@@ -52,11 +53,12 @@ public class DepositService implements IDepositService {
                 deposit.setInitialBalance(depositUser.getBalance());
                 deposit.setNewBalance(newBalance);
                 depositUser.setBalance(newBalance);
-
                 userRepo.save(depositUser);
-                Deposit newDeposit = depositRepo.save(deposit);
+                depositRepo.save(deposit);
+
                 URI uri = linkTo(methodOn(DepositService.class).makeDeposit(userId, depositAmount)).withSelfRel().toUri();
-                ResponseEntity<Object> resultEntity = ResponseEntity.created(uri).body(newDeposit);
+                DepositResponseDTO responseObject = new DepositResponseDTO("Successfully deposited " + depositAmount + " to account with id " + userId);
+                ResponseEntity<Object> resultEntity = ResponseEntity.created(uri).body(responseObject);
                 logger.debug("HTTP Status: " + HttpStatus.CREATED.toString());
                 logger.debug("New deposit of " + depositAmount + " made to account with id " + userId);
                 return resultEntity;

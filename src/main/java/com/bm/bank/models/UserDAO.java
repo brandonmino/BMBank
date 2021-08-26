@@ -19,6 +19,12 @@ public class UserDAO {
 
     public UserDAO() {}
 
+    public UserDAO(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.balance = 0;
+    }
+
     public Long getId() {
         return id;
     }
