@@ -7,6 +7,7 @@ import com.bm.bank.exceptions.NegativeDepositException;
 import com.bm.bank.exceptions.UserIdNotProvidedException;
 import com.bm.bank.exceptions.UserNotFoundException;
 import com.bm.bank.models.Deposit;
+import com.bm.bank.models.DepositRequestDTO;
 import com.bm.bank.models.DepositResponseDTO;
 import com.bm.bank.models.User;
 import com.bm.bank.repos.IDepositRepo;
@@ -34,7 +35,8 @@ public class DepositService implements IDepositService {
 
     //Method for making a deposit
     @Override
-    public ResponseEntity<Object> makeDeposit(Long userId, int depositAmount) {
+    public ResponseEntity<Object> makeDeposit(Long userId, DepositRequestDTO request) {
+        int depositAmount = request.getDepositAmount();
         logger.debug("Attempting to make deposit with the following info: userID: " + userId + " depositAmount: " + depositAmount);
         if (userId == null) {
             throw new UserIdNotProvidedException();
@@ -56,7 +58,7 @@ public class DepositService implements IDepositService {
                 userRepo.save(depositUser);
                 depositRepo.save(deposit);
 
-                URI uri = linkTo(methodOn(DepositService.class).makeDeposit(userId, depositAmount)).withSelfRel().toUri();
+                URI uri = linkTo(methodOn(DepositService.class).makeDeposit(userId, request)).withSelfRel().toUri();
                 DepositResponseDTO responseObject = new DepositResponseDTO("Successfully deposited " + depositAmount + " to account with id " + userId);
                 ResponseEntity<Object> resultEntity = ResponseEntity.created(uri).body(responseObject);
                 logger.debug("HTTP Status: " + HttpStatus.CREATED.toString());

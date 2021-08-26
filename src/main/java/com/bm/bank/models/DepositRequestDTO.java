@@ -2,13 +2,13 @@ package com.bm.bank.models;
 
 //Deposit Model for making a request
 public class DepositRequestDTO {
-    private String message;
+    private int depositAmount;
 
-    public DepositRequestDTO(String message) {
-        this.message = message;
+    public DepositRequestDTO(int depositAmount) {
+        this.depositAmount = depositAmount;
     }
 
-    public String getMessage() {
-        return message;
+    public int getDepositAmount() {
+        return depositAmount;
     }
 }

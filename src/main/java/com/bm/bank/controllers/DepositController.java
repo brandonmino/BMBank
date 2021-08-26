@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
-import com.bm.bank.models.Deposit;
+import com.bm.bank.models.DepositRequestDTO;
 import com.bm.bank.services.DepositService;
 
 //Deposit controller object
@@ -19,8 +19,8 @@ public class DepositController {
 
     //Attempt to make a deposit to a given account. Returns code and message if succcessful or error if not.
     @PostMapping("/deposit/{userId}")
-    public ResponseEntity<Object> makeDeposit(@PathVariable(required=true) Long userId, @RequestBody Deposit depositDetails) {
-        return depositService.makeDeposit(userId, depositDetails.getDepositAmount());
+    public ResponseEntity<Object> makeDeposit(@PathVariable(required=true) Long userId, @RequestBody DepositRequestDTO request) {
+        return depositService.makeDeposit(userId, request);
     }
 
 }

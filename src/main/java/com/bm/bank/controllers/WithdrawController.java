@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
-import com.bm.bank.models.Withdraw;
+import com.bm.bank.models.WithdrawDTORequest;
 import com.bm.bank.services.WithdrawService;
 
 //Withdraw controller object
@@ -19,8 +19,8 @@ public class WithdrawController {
 
     //Attempt to make a withdraw from a given account. Returns code and message if succcessful or error if not.
     @PostMapping("/withdraw/{userId}")
-    public ResponseEntity<Object> makeWithdraw(@PathVariable(required=true) Long userId, @RequestBody Withdraw withdrawDetails) {
-            return withdrawService.makeWithdraw(userId, withdrawDetails.getWithdrawAmount());
+    public ResponseEntity<Object> makeWithdraw(@PathVariable(required=true) Long userId, @RequestBody WithdrawDTORequest request) {
+            return withdrawService.makeWithdraw(userId, request);
     }
 
 }

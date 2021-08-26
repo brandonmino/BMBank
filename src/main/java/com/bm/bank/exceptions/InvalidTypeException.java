@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+
+import com.bm.bank.models.ExceptionResponseDTO;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,9 +19,9 @@ public class InvalidTypeException {
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseBody
-    public ResponseEntity<Object> handleTypeMismatchException(MethodArgumentTypeMismatchException typeMismatchException) {
-        logger.info("HTTP Status: " + HttpStatus.BAD_REQUEST.toString());
-        logger.info("Invalid type provided in the request");
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    public ResponseEntity<ExceptionResponseDTO> handleTypeMismatchException(MethodArgumentTypeMismatchException typeMismatchException) {
+        logger.warn("Invalid type provided in the request");
+        ExceptionResponseDTO exceptionResponse = new ExceptionResponseDTO(5000, "Invalid type provided in the request");
+        return new ResponseEntity<ExceptionResponseDTO>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 }

@@ -33,14 +33,13 @@ public class UserService implements IUserService {
 
     //Find a given user from the database given their id
     @Override
-    public ResponseEntity<Object> findById(UserRequestDTO request) {
-        Long userId = request.getId();
+    public ResponseEntity<Object> findById(Long userId) {
         logger.debug("Attempting to retrieve user with the following id: " + userId);
         if (userId == null) {
             throw new UserIdNotProvidedException();
         }
         else {
-            Optional<User> user = userRepo.findById(request.getId());
+            Optional<User> user = userRepo.findById(userId);
             if (user.isPresent()) {
                 User retrievedUser = user.get();
 
@@ -81,8 +80,7 @@ public class UserService implements IUserService {
 
     //Delete a given user from the database given their id
     @Override
-    public ResponseEntity<Object> delete(UserRequestDTO request) {
-        Long userId = request.getId();
+    public ResponseEntity<Object> delete(Long userId) {
         logger.debug("Attempting to delete user with the following id: " + userId);
         if (userId == null) {
             throw new UserNotProvidedException();

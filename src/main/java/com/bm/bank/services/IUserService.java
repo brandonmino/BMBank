@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 //User Service Interface
 public interface IUserService {
-    ResponseEntity<Object> findById(UserRequestDTO request);
+    ResponseEntity<Object> findById(Long userId);
     ResponseEntity<Object> createUser(UserRequestDTO request);
-    ResponseEntity<Object> delete(UserRequestDTO request);
+    ResponseEntity<Object> delete(Long userId);
 }
