@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Optional;
 
 import com.bm.bank.exceptions.ExcessiveWithdrawException;
+import com.bm.bank.exceptions.NegativeWithdrawException;
 import com.bm.bank.exceptions.UserIdNotProvidedException;
 import com.bm.bank.exceptions.UserNotFoundException;
 import com.bm.bank.models.Withdraw;
@@ -47,6 +48,9 @@ public class WithdrawService implements IWithdrawService {
                 int newBalance = withdrawUser.getBalance() - withdrawAmount;
                 if (newBalance < 0) {
                     throw new ExcessiveWithdrawException();
+                }
+                else if (withdrawAmount < 0) {
+                    throw new NegativeWithdrawException();
                 }
                 else {
                     Withdraw withdraw = new Withdraw();
