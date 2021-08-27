@@ -10,8 +10,8 @@ import com.bm.bank.models.Deposit;
 import com.bm.bank.models.DepositRequestDTO;
 import com.bm.bank.models.DepositResponseDTO;
 import com.bm.bank.models.User;
-import com.bm.bank.repos.IDepositRepo;
-import com.bm.bank.repos.IUserRepo;
+import com.bm.bank.repos.DepositDAO;
+import com.bm.bank.repos.UserDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,9 +27,9 @@ import org.slf4j.LoggerFactory;
 @Service
 public class DepositService implements IDepositService {
     @Autowired
-    private IDepositRepo depositRepo;
+    private DepositDAO depositDAO;
     @Autowired
-    private IUserRepo userRepo;
+    private UserDAO userDAO;
 
     final Logger logger = LoggerFactory.getLogger(DepositService.class);
 
@@ -45,7 +45,7 @@ public class DepositService implements IDepositService {
             throw new NegativeDepositException();
         }
         else {
-            Optional<User> user = userRepo.findById(userId);
+            Optional<User> user = userDAO.findById(userId);
             if (user.isPresent()) {
                 User depositUser = user.get();
                 int newBalance = depositUser.getBalance() + depositAmount;
@@ -55,8 +55,8 @@ public class DepositService implements IDepositService {
                 deposit.setInitialBalance(depositUser.getBalance());
                 deposit.setNewBalance(newBalance);
                 depositUser.setBalance(newBalance);
-                userRepo.save(depositUser);
-                depositRepo.save(deposit);
+                userDAO.save(depositUser);
+                depositDAO.save(deposit);
 
                 URI uri = linkTo(methodOn(DepositService.class).makeDeposit(userId, request)).withSelfRel().toUri();
                 DepositResponseDTO responseObject = new DepositResponseDTO("Successfully deposited " + depositAmount + " to account with id " + userId);

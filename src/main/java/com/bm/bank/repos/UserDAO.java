@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 
 //User Repo Interface
 @Repository
-public interface IUserRepo extends CrudRepository<User, Long> {
-    public Optional<User> findById(Long id);
+public interface UserDAO extends CrudRepository<User, Long> {
+    public Optional<User> findById(Long userId);
     public User save(User user);
     public void delete(User user);
 }

@@ -4,11 +4,11 @@ package com.bm.bank.models;
 public class DepositRequestDTO {
     private int depositAmount;
 
-    public DepositRequestDTO(int depositAmount) {
-        this.depositAmount = depositAmount;
-    }
-
     public int getDepositAmount() {
         return depositAmount;
+    }
+
+    public void setDepositAmount(int newDepositAmount) {
+        depositAmount = newDepositAmount;
     }
 }

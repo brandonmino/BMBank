@@ -9,7 +9,7 @@ import com.bm.bank.exceptions.UserNotProvidedException;
 import com.bm.bank.models.User;
 import com.bm.bank.models.UserRequestDTO;
 import com.bm.bank.models.UserResponseDTO;
-import com.bm.bank.repos.IUserRepo;
+import com.bm.bank.repos.UserDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 @Service
 public class UserService implements IUserService {
     @Autowired
-    private IUserRepo userRepo;
+    private UserDAO userDAO;
 
     final Logger logger = LoggerFactory.getLogger(UserService.class);
 
@@ -39,7 +39,7 @@ public class UserService implements IUserService {
             throw new UserIdNotProvidedException();
         }
         else {
-            Optional<User> user = userRepo.findById(userId);
+            Optional<User> user = userDAO.findById(userId);
             if (user.isPresent()) {
                 User retrievedUser = user.get();
 
@@ -67,9 +67,10 @@ public class UserService implements IUserService {
             newUser.setBalance(0);
             newUser.setFirstName(request.getFirstName());
             newUser.setLastName(request.getLastName());
-            userRepo.save(newUser);
+            System.out.println(request.getFirstName());
+            userDAO.save(newUser);
 
-            UserResponseDTO responseObject = new UserResponseDTO("Successfully created user with id " + newUser.getId());
+            UserResponseDTO responseObject = new UserResponseDTO("Successfully created user with id " + newUser.getUserId());
             URI uri = linkTo(methodOn(UserService.class).createUser(request)).withSelfRel().toUri();
             ResponseEntity<Object> resultEntity = ResponseEntity.created(uri).body(responseObject);
             logger.debug("HTTP Status: " + HttpStatus.CREATED.toString());
@@ -86,9 +87,9 @@ public class UserService implements IUserService {
             throw new UserNotProvidedException();
         }
         else {
-            Optional<User> user = userRepo.findById(userId);
+            Optional<User> user = userDAO.findById(userId);
             if (user.isPresent()) {
-                userRepo.delete(user.get());
+                userDAO.delete(user.get());
                 UserResponseDTO responseObject = new UserResponseDTO("Successfully deleted user with id " + userId);
                 ResponseEntity<Object> resultEntity = ResponseEntity.ok().body(responseObject);
                 logger.debug("HTTP Status: " + HttpStatus.OK.toString());

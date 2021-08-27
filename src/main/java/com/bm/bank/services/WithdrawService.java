@@ -7,12 +7,12 @@ import com.bm.bank.exceptions.ExcessiveWithdrawException;
 import com.bm.bank.exceptions.NegativeWithdrawException;
 import com.bm.bank.exceptions.UserIdNotProvidedException;
 import com.bm.bank.exceptions.UserNotFoundException;
-import com.bm.bank.models.Withdraw;
+import com.bm.bank.models.User;
 import com.bm.bank.models.WithdrawDTORequest;
 import com.bm.bank.models.WithdrawDTOResponse;
-import com.bm.bank.models.User;
-import com.bm.bank.repos.IWithdrawRepo;
-import com.bm.bank.repos.IUserRepo;
+import com.bm.bank.models.Withdraw;
+import com.bm.bank.repos.UserDAO;
+import com.bm.bank.repos.WithdrawDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,9 +27,9 @@ import org.slf4j.LoggerFactory;
 @Service
 public class WithdrawService implements IWithdrawService {
     @Autowired
-    private IWithdrawRepo withdrawRepo;
+    private WithdrawDAO withdrawDAO;
     @Autowired
-    private IUserRepo userRepo;
+    private UserDAO userDAO;
 
     private static final Logger logger = LoggerFactory.getLogger(WithdrawService.class);
 
@@ -42,7 +42,7 @@ public class WithdrawService implements IWithdrawService {
             throw new UserIdNotProvidedException();
         }
         else {
-            Optional<User> user = userRepo.findById(userId);
+            Optional<User> user = userDAO.findById(userId);
             if (user.isPresent()) {
                 User withdrawUser = user.get();
                 int newBalance = withdrawUser.getBalance() - withdrawAmount;
@@ -59,8 +59,9 @@ public class WithdrawService implements IWithdrawService {
                     withdraw.setInitialBalance(withdrawUser.getBalance());
                     withdraw.setNewBalance(newBalance);
                     withdrawUser.setBalance(newBalance);
-                    userRepo.save(withdrawUser);
-                    withdrawRepo.save(withdraw);
+
+                    userDAO.save(withdrawUser);
+                    withdrawDAO.save(withdraw);
 
                     WithdrawDTOResponse responseObject = new WithdrawDTOResponse("Successfully made withdraw of " + withdrawAmount + " from account with id " + userId);
                     URI uri = linkTo(methodOn(WithdrawService.class).makeWithdraw(userId, request)).withSelfRel().toUri();

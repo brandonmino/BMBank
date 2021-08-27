@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 //Withdraw Repo Interface
 @Repository
-public interface IWithdrawRepo extends CrudRepository<Withdraw, Long> {
+public interface WithdrawDAO extends CrudRepository<Withdraw, Long> {
     public Optional<Withdraw> findByUserId(Long userId);
     public Withdraw save(Withdraw withdraw);
 }

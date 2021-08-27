@@ -20,7 +20,7 @@ public class UserController {
     private UserService userService;
 
     //Get an existing account given the user id. Returns code and message if succcessful or error if not.
-    @GetMapping("/user/{id}")
+    @GetMapping("/user/{userId}")
     public ResponseEntity<Object> getId(@PathVariable(required=true) Long userId) {
         return userService.findById(userId);
     }
@@ -32,7 +32,7 @@ public class UserController {
     }
 
     //Delete an account given the user id. Returns code and message if succcessful or error if not.
-    @DeleteMapping("/user/delete/{id}")
+    @DeleteMapping("/user/delete/{userId}")
     public ResponseEntity<Object> deleteUser(@PathVariable(required=true) Long userId) {
         return userService.delete(userId);
     }

@@ -6,13 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//User Model
+//User Object Model for interacting with database
 @Entity
 @Table(name = "User")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long userId;
     private int balance;
     private String firstName;
     private String lastName;
@@ -25,8 +25,8 @@ public class User {
         this.balance = 0;
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
     public int getBalance() {
@@ -41,8 +41,8 @@ public class User {
         return lastName;
     }
 
-    public void setId(Long newId) {
-        id = newId;
+    public void setUserId(Long newId) {
+        userId = newId;
     }
 
     public void setBalance(int newBalance) {

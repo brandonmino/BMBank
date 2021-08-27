@@ -4,12 +4,12 @@ package com.bm.bank.models;
 public class WithdrawDTORequest {
     int withdrawAmount;
 
-    public WithdrawDTORequest(int withdrawAmount) {
-        this.withdrawAmount = withdrawAmount;
-    }
-
     public int getWithdrawAmount() {
         return withdrawAmount;
+    }
+
+    public void setWithdrawAmount(int newWithdrawAmount) {
+        withdrawAmount = newWithdrawAmount;
     }
 
 }

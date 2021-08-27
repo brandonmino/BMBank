@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 //Deposit Repo Interface
 @Repository
-public interface IDepositRepo extends CrudRepository<Deposit, Long> {
+public interface DepositDAO extends CrudRepository<Deposit, Long> {
     public Optional<Deposit> findByUserId(Long userId);
     public Deposit save(Deposit deposit);
 }
