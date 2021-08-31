@@ -1,10 +1,10 @@
 package com.bm.bank.models;
 
-//Withdraw Model for handling a response
-public class WithdrawDTOResponse {
+//Withdrawalal Model for handling a response
+public class WithdrawalDTOResponse {
     String message;
 
-    public WithdrawDTOResponse(String message) {
+    public WithdrawalDTOResponse(String message) {
         this.message = message;
     }
 

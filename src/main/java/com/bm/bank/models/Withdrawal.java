@@ -6,10 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//Withdraw Object Model for interacting with database
+//Withdrawalal Object Model for interacting with database
 @Entity
-@Table(name = "Withdraw")
-public class Withdraw {
+@Table(name = "Withdrawalal")
+public class Withdrawal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long transactionId;
@@ -18,7 +18,7 @@ public class Withdraw {
     int initialBalance;
     int newBalance;
 
-    public Withdraw() {};
+    public Withdrawal() {};
 
     public Long getTransactionId() {
         return transactionId;
@@ -28,7 +28,7 @@ public class Withdraw {
         return userId;
     }
 
-    public int getWithdrawAmount() {
+    public int getWithdrawalAmount() {
         return withdrawAmount;
     }
 
@@ -48,7 +48,7 @@ public class Withdraw {
         userId = newId;
     }
 
-    public void setWithdrawAmount(int newAmount) {
+    public void setWithdrawalAmount(int newAmount) {
         withdrawAmount = newAmount;
     }
 

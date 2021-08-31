@@ -1,0 +1,14 @@
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: 'jdbc:mysql://${MYSQL_HOST:localhost}:3306/${MYSQL_DBNAME:Bank}' #'jdbc:mysql://localhost:3306/Bank'
+        username: ${MYSQL_USERNAME:user} #user
+        password: ${MYSQL_PASSWORD:password} #password
+    jpa:
+        generate-ddl: 'true'
+        hibernate:
+            ddl-auto: update
+        database-platform: org.hibernate.dialect.MySQL8Dialect
+logging:
+    file:
+        path: ./src/main/resources/logs
