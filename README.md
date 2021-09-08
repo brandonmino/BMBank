@@ -35,12 +35,12 @@ Note that you should include environment variable as described above when runnin
 
 ### Architecture
 This is a diagram to display a high-level overview of the system's architecture:
-![System Architecture](assets\HighLevelDiagram.png)
+![System Architecture](assets/HighLevelDiagram.png)
 </br>
 The system is broken down into 3 main services: Deposit, Withdrawal, and User. Each service takes in requests from a client, interacts with the database to modify the content, and returns a response back to the client.
 
 This is a diagram to display how the API is designed:
-![API Architecture](assets\APIDiagram.png)
+![API Architecture](assets/APIDiagram.png)
 Each service has the following capability:
 - Deposit: Make a deposit of a given amount given the userId.
 - Withdrawal: Make a withdrawal of a given amount given the userId.
@@ -48,7 +48,7 @@ Each service has the following capability:
 
 ### Error Hierarchy
 This is a diagram to display the hierarchy of exceptions that may be thrown:
-![Error Hierarchy](assets\ExceptionDiagram.png)
+![Error Hierarchy](assets/ExceptionDiagram.png)
 
 ### Status Codes
 This application comes with custom exceptions. The table below will provide context into the exceptions and the status codes that they are mapped to.
