@@ -1,0 +1,199 @@
+swagger: "2.0"
+info:
+  description: "Brandon's Banking app. Used to learn/demonstrate knowledge on APIs. SpringBoot, RDS, and microservices"
+  version: "1.0.0"
+  title: "Brandon's Bank"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "brandon.mino@slalom.com"
+host: "localhost:8080"
+schemes:
+- "https"
+- "http"
+paths:
+  /user/{userId}:
+    get:
+      tags:
+      - "User"
+      summary: "Get account details for a given user id"
+      description: ""
+      operationId: "getUser"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "User Id"
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "successfully got user details"
+          schema:
+            type: "integer"
+            items:
+              $ref: "#/definitions/User"
+        "400":
+          description: "invalid user Id"
+
+  /user/create:
+    post:
+      tags:
+      - "User"
+      summary: "Create account with provided details"
+      description: ""
+      operationId: "createUser"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "new user"
+        in: "body"
+        description: "new user object"
+        schema:
+            type: object
+            required:
+              - firstName, lastName
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+      responses:
+        "201":
+          description: "successfully created account"
+          schema:
+            type: "string"
+            items:
+              $ref: "#/definitions/User"
+        "400":
+          description: "invalid information provided"
+          
+  /user/delete/{userId}:
+    delete:
+      tags:
+      - "User"
+      summary: "Delete account for a give user id"
+      description: ""
+      operationId: "deleteUser"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "User Id"
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "successfully deleted account"
+          schema:
+            type: "integer"
+            items:
+              $ref: "#/definitions/User"
+        "400":
+          description: "Invalid user Id"
+          
+  /withdrawal/{userId}:
+    post:
+      tags:
+      - "Withdrawal"
+      summary: "Make a withdrawal from a given user's account"
+      description: ""
+      operationId: "makeWithdrawal"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "Withdraw money from a given client account"
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "Successfully made a withdrawal"
+          schema:
+            type: "integer"
+            items:
+              $ref: "#/definitions/Withdrawal"
+        "400":
+          description: "Invalid user Id"
+          
+  /deposit/{userId}:
+    post:
+      tags:
+      - "Deposit"
+      summary: "Make a withdrawal from a given user's account"
+      description: ""
+      operationId: "makeDeposit"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "Deposit money to a given client account"
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "Successfully deposited money"
+          schema:
+            type: "integer"
+            items:
+              $ref: "#/definitions/Deposit"
+        "400":
+          description: "Invalid user Id"
+
+definitions:
+  User:
+    type: "object"
+    required:
+    - "balance"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      amount:
+        type: "integer"
+        example: "50"
+  Withdrawal:
+    type: "object"
+    required:
+    - "amount"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      amount:
+        type: "integer"
+        example: "50"
+  Deposit:
+    type: "object"
+    required:
+    - "amount"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      amount:
+        type: "integer"
+        example: "50"
