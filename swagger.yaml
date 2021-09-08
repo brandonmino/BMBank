@@ -1,8 +1,8 @@
 swagger: "2.0"
 info:
-  description: "Brandon's Banking app. Used to learn/demonstrate knowledge on APIs, SpringBoot, RDS, and microservices"
+  description: "BMBank. Used to learn/demonstrate knowledge on APIs, SpringBoot, RDS, and microservices"
   version: "1.0.0"
-  title: "Brandon's Bank"
+  title: "BMBank"
   termsOfService: "http://swagger.io/terms/"
   contact:
     email: "brandon.mino@slalom.com"

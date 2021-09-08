@@ -48,3 +48,30 @@
 2021-09-08 10:29:47.875  INFO 20420 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2021-09-08 10:29:47.877  INFO 20420 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2021-09-08 10:29:47.885  INFO 20420 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-09-08 15:02:53.316  INFO 3440 --- [main] com.bm.bank.BMBankApplication            : Starting BMBankApplication using Java 16.0.2 on 88JT0F3 with PID 3440 (C:\Users\brandon.mino\Downloads\bank\bank\target\classes started by brandon.mino in C:\Users\brandon.mino\Downloads\bank\bank)
+2021-09-08 15:02:53.321  INFO 3440 --- [main] com.bm.bank.BMBankApplication            : No active profile set, falling back to default profiles: default
+2021-09-08 15:02:53.901  INFO 3440 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-09-08 15:02:53.949  INFO 3440 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 3 JPA repository interfaces.
+2021-09-08 15:02:54.478  INFO 3440 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-09-08 15:02:54.491  INFO 3440 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-09-08 15:02:54.491  INFO 3440 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.52]
+2021-09-08 15:02:54.607  INFO 3440 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-09-08 15:02:54.608  INFO 3440 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1246 ms
+2021-09-08 15:02:54.777  INFO 3440 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-09-08 15:02:54.901  INFO 3440 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.5.6.Final
+2021-09-08 15:02:55.105  INFO 3440 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-09-08 15:02:55.220  INFO 3440 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-09-08 15:02:55.581  INFO 3440 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-09-08 15:02:55.601  INFO 3440 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-09-08 15:02:56.176  INFO 3440 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-09-08 15:02:56.183  INFO 3440 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-09-08 15:02:56.426  WARN 3440 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-09-08 15:02:56.714  INFO 3440 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-09-08 15:02:56.723  INFO 3440 --- [main] com.bm.bank.BMBankApplication            : Started BMBankApplication in 3.768 seconds (JVM running for 4.035)
+2021-09-08 15:02:58.970  INFO 3440 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-09-08 15:02:58.971  INFO 3440 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-09-08 15:02:58.975  INFO 3440 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-09-08 15:05:16.918  WARN 3440 --- [http-nio-8080-exec-7] c.b.b.controllers.ExceptionController    : code: 3001 message: Withdraw was blocked as you attempted to withdraw more than your current balance
+2021-09-08 15:16:09.262  INFO 3440 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-09-08 15:16:09.262  INFO 3440 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-09-08 15:16:09.280  INFO 3440 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
