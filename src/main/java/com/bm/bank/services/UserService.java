@@ -34,7 +34,7 @@ public class UserService implements IUserService {
     //Find a given user from the database given their id
     @Override
     public ResponseEntity<Object> findById(Long userId) {
-        logger.debug("Attempting to retrieve user with the following id: " + userId);
+        logger.debug("Attempting to retrieve user with the following userId: " + userId);
         if (userId == null) {
             throw new UserIdNotProvidedException();
         }
@@ -43,10 +43,10 @@ public class UserService implements IUserService {
             if (user.isPresent()) {
                 User retrievedUser = user.get();
 
-                UserResponseDTO responseObject = new UserResponseDTO(retrievedUser, "Successfully retrieved user with id " + userId);
+                UserResponseDTO responseObject = new UserResponseDTO(retrievedUser, "Successfully retrieved user with userId " + userId);
                 ResponseEntity<Object> resultEntity = ResponseEntity.ok().body(responseObject);
                 logger.debug("HTTP Status: " + HttpStatus.OK.toString());
-                logger.debug("Successfully retrieved user with id: " + userId + ". Info: " + retrievedUser);
+                logger.debug("Successfully retrieved user with userId: " + userId + ". Info: " + retrievedUser);
                 return resultEntity;
             }
             else {
@@ -70,7 +70,7 @@ public class UserService implements IUserService {
             System.out.println(request.getFirstName());
             userDAO.save(newUser);
 
-            UserResponseDTO responseObject = new UserResponseDTO("Successfully created user with id " + newUser.getUserId());
+            UserResponseDTO responseObject = new UserResponseDTO("Successfully created user with userId " + newUser.getUserId());
             URI uri = linkTo(methodOn(UserService.class).createUser(request)).withSelfRel().toUri();
             ResponseEntity<Object> resultEntity = ResponseEntity.created(uri).body(responseObject);
             logger.debug("HTTP Status: " + HttpStatus.CREATED.toString());
@@ -82,7 +82,7 @@ public class UserService implements IUserService {
     //Delete a given user from the database given their id
     @Override
     public ResponseEntity<Object> delete(Long userId) {
-        logger.debug("Attempting to delete user with the following id: " + userId);
+        logger.debug("Attempting to delete user with the following userId: " + userId);
         if (userId == null) {
             throw new UserNotProvidedException();
         }
@@ -90,10 +90,10 @@ public class UserService implements IUserService {
             Optional<User> user = userDAO.findById(userId);
             if (user.isPresent()) {
                 userDAO.delete(user.get());
-                UserResponseDTO responseObject = new UserResponseDTO("Successfully deleted user with id " + userId);
+                UserResponseDTO responseObject = new UserResponseDTO("Successfully deleted user with userId " + userId);
                 ResponseEntity<Object> resultEntity = ResponseEntity.ok().body(responseObject);
                 logger.debug("HTTP Status: " + HttpStatus.OK.toString());
-                logger.debug("Status: user with id: " + userId + " deleted");
+                logger.debug("Status: user with userId: " + userId + " deleted");
                 return resultEntity;
             }
             else {

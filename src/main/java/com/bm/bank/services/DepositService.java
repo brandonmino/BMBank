@@ -59,10 +59,10 @@ public class DepositService implements IDepositService {
                 depositDAO.save(deposit);
 
                 URI uri = linkTo(methodOn(DepositService.class).makeDeposit(userId, request)).withSelfRel().toUri();
-                DepositResponseDTO responseObject = new DepositResponseDTO("Successfully deposited " + depositAmount + " to account with id " + userId);
+                DepositResponseDTO responseObject = new DepositResponseDTO("Successfully deposited " + depositAmount + " to account with userId " + userId);
                 ResponseEntity<Object> resultEntity = ResponseEntity.created(uri).body(responseObject);
                 logger.debug("HTTP Status: " + HttpStatus.CREATED.toString());
-                logger.debug("New deposit of " + depositAmount + " made to account with id " + userId);
+                logger.debug("New deposit of " + depositAmount + " made to account with userId " + userId);
                 return resultEntity;
             }
             else {
